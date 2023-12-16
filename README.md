@@ -1,16 +1,19 @@
 # pillo
 
-A new Flutter project.
+using muse2 
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+<앱 개발>
 
-A few resources to get you started if this is your first Flutter project:
+figma를 통해 앱에 맞는 UI를 디자인 해준 뒤, 코드 변환을 이용해 flutter에서 구현해주었습니다. flutter의 StatefulWidget을 이용하여 여러 기능을 동적으로 구현해주고, ChangeNotifier class를 이용하여 User name을 입력받아 FeedBackPage에 표시해주었습니다.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<API 연결>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ 파이썬 코드를 앱 실행시 동작시키기 위해 Flask 클래스를 이용하여 웹 애플리케이션을 만들어주었습니다. 먼저, 앞서 구현했던 파이썬 코드를  눈 깜빡임 횟수, 눈 깜빡임 횟수 구하기, 피로도 그래프 시각화, 피로도 증감 비율로 나누어 함수로 구현하고 flutter 프로젝트 내에 각 파일을 만들어 넣어주었습니다. 그 후, 그래프를 보여주는 함수에는 웹 서버에 호스팅 하기 위해서 시각화 이미지를 png 형태로 바꾸어주는 작업을 구현하고, 각 함수에서 숫자 혹은 이미지(그래)를 반환하도록 하였습니다. flask의 앤드포인트는 각 함수 당 하나씩, 즉 4개를 구현해주었는데, 이미지(그래프)를 반환하는 앤드포인트에선 **`send_file()`** 함수로 이미지를 클라이언트에게 전송하였습니다.  피로도 비율과 눈깜빡임 횟수, 즉 숫자를 반환하는 엔드 포인트에선 **`jsonify()`** 함수로 JSON 형식으로 응답을 생성하도록 구현해주었습니다. flask 앱의 host는 ‘0.0.0.0’으로 설정하여 외부에서 접근 가능하고 포트는 5000번을 사용하도록 설정하였습니다.
+
+다음은 flutter 앱에서 flask 웹 서버로부터 데이터를 받아오고, 해당 데이터를 이용하여 그래픽 요소를 화면에 표시하는 기능을 설명하도록 하겠습니다. 먼저, 숫자 데이터는 **`http.get`** 메서드를 사용하여 서버에 GET 요청을 보냅니다. 성공적으로 응답이 오면, JSON 형식으로 변환하고 가져온 데이터를 상태에 반영합니다. 이미지 데이터도 HTTP GET 요청을 사용하여 서버로부터 이미지 데이터를 가져오고, 가져온 데이터를 **`Uint8List`** 형식으로 반환해주었습니다. **`Image.memory`** 위젯을 사용하여 받아온 이미지 데이터를 화면에 표시해주고,  **`FutureBuilder`** 위젯을 사용하여 이를 UI에 업데이트해주었습니다.
+
+
+https://github.com/bigtr3/pillo/assets/117579065/9571c5aa-3106-4658-b081-379398ab6878
+
